@@ -1,0 +1,600 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Secondary Metabolites Predict Diazotrophic~Cyanobacteria},
+  pdfauthor={James~Young},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Secondary Metabolites Predict Diazotrophic~Cyanobacteria}
+\author{James~Young}
+\date{2025-06-30}
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gh\_raw }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(fname) \{}
+\NormalTok{  glue}\SpecialCharTok{::}\FunctionTok{glue}\NormalTok{(}
+    \StringTok{"https://raw.githubusercontent.com/jamesyoung93/Secondary{-}Metabolites{-}and{-}Diazotrophs/main/\{fname\}"}
+\NormalTok{  )}
+\NormalTok{\}}
+\NormalTok{get\_data }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(fname) readr}\SpecialCharTok{::}\FunctionTok{read\_csv}\NormalTok{(}\FunctionTok{gh\_raw}\NormalTok{(fname), }\AttributeTok{show\_col\_types =} \ConstantTok{FALSE}\NormalTok{)}
+
+\NormalTok{met\_tbl }\OtherTok{\textless{}{-}} \FunctionTok{get\_data}\NormalTok{(}\StringTok{"Met.csv"}\NormalTok{)}
+\NormalTok{cyano   }\OtherTok{\textless{}{-}} \FunctionTok{get\_data}\NormalTok{(}\StringTok{"CyanoMetDB.csv"}\NormalTok{)}
+
+\CommentTok{\# Keep strains with labelled diazotrophy (0 / 1) and valid names}
+\NormalTok{met\_lbl }\OtherTok{\textless{}{-}}\NormalTok{ met\_tbl }\SpecialCharTok{|\textgreater{}} \FunctionTok{filter}\NormalTok{(Fix }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{))}
+\NormalTok{met\_str }\OtherTok{\textless{}{-}} \FunctionTok{semi\_join}\NormalTok{(met\_tbl, met\_lbl, }\AttributeTok{by =} \StringTok{"Strain"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{filter}\NormalTok{(Strain }\SpecialCharTok{!=} \StringTok{"n.a."}\NormalTok{)}
+
+\CommentTok{\# Expand multi‑strain columns in CyanoMetDB}
+\NormalTok{cyano }\OtherTok{\textless{}{-}}\NormalTok{ cyano }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{cSplit}\NormalTok{(}\StringTok{"Strain"}\NormalTok{, }\AttributeTok{sep =} \StringTok{";"}\NormalTok{, }\AttributeTok{direction =} \StringTok{"long"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{cSplit}\NormalTok{(}\StringTok{"Strain"}\NormalTok{, }\AttributeTok{sep =} \StringTok{","}\NormalTok{, }\AttributeTok{direction =} \StringTok{"long"}\NormalTok{)}
+
+\NormalTok{cy\_int }\OtherTok{\textless{}{-}} \FunctionTok{semi\_join}\NormalTok{(cyano, met\_str, }\AttributeTok{by =} \StringTok{"Strain"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{left\_join}\NormalTok{(}\FunctionTok{select}\NormalTok{(met\_str, Strain, Fix), }\AttributeTok{by =} \StringTok{"Strain"}\NormalTok{)}
+
+\NormalTok{x3 }\OtherTok{\textless{}{-}}\NormalTok{ cy\_int }\SpecialCharTok{|\textgreater{}}
+  \CommentTok{\#arrange(desc(Fix)) |\textgreater{}}
+  \CommentTok{\#distinct(SMILES, .keep\_all = TRUE) |\textgreater{}       \# ← remove duplicate structures}
+  \FunctionTok{select}\NormalTok{(CompoundName, Fix, SMILES) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{rename}\NormalTok{(}\AttributeTok{name =}\NormalTok{ CompoundName, }\AttributeTok{FIX =}\NormalTok{ Fix, }\AttributeTok{smiles =}\NormalTok{ SMILES)}
+
+\NormalTok{x3 }\OtherTok{\textless{}{-}}\NormalTok{ cy\_int }\SpecialCharTok{\%\textgreater{}\%}                    \CommentTok{\# starting data{-}frame}
+  \FunctionTok{add\_count}\NormalTok{(SMILES, }\AttributeTok{name =} \StringTok{"n"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\# n = frequency of each SMILES}
+  \FunctionTok{filter}\NormalTok{(n }\SpecialCharTok{==} \DecValTok{1}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}               \CommentTok{\# keep the uniques only}
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{n) }\SpecialCharTok{\%\textgreater{}\%}                   \CommentTok{\# drop helper column}
+  \FunctionTok{select}\NormalTok{(CompoundName, Fix, SMILES) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{rename}\NormalTok{(}\AttributeTok{name   =}\NormalTok{ CompoundName,}
+         \AttributeTok{FIX    =}\NormalTok{ Fix,}
+         \AttributeTok{smiles =}\NormalTok{ SMILES)}
+
+\CommentTok{\#x3[is.na(x3)] \textless{}{-} 0}
+\NormalTok{x3 }\OtherTok{\textless{}{-}}\NormalTok{ x3 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(FIX))}
+\FunctionTok{mean}\NormalTok{(x3}\SpecialCharTok{$}\NormalTok{FIX)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.5037594
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{smiles2fp }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(smiles\_vec,}
+                      \AttributeTok{depth =} \DecValTok{30}\NormalTok{,        }\CommentTok{\# was 6}
+                      \AttributeTok{nbits =} \DecValTok{262144}\NormalTok{) \{}
+\NormalTok{  mols }\OtherTok{\textless{}{-}}\NormalTok{ rcdk}\SpecialCharTok{::}\FunctionTok{parse.smiles}\NormalTok{(smiles\_vec)}
+\NormalTok{  ok   }\OtherTok{\textless{}{-}} \SpecialCharTok{!}\FunctionTok{vapply}\NormalTok{(mols, is.null, }\FunctionTok{logical}\NormalTok{(}\DecValTok{1}\NormalTok{))}
+\NormalTok{  mols }\OtherTok{\textless{}{-}}\NormalTok{ mols[ok]}
+
+\NormalTok{  fp\_set }\OtherTok{\textless{}{-}} \FunctionTok{lapply}\NormalTok{(}
+\NormalTok{    mols,}
+\NormalTok{    rcdk}\SpecialCharTok{::}\NormalTok{get.fingerprint,}
+    \AttributeTok{type     =} \StringTok{"standard"}\NormalTok{,   }\CommentTok{\# path{-}based FP}
+    \AttributeTok{fp.mode  =} \StringTok{"bit"}\NormalTok{,}
+    \AttributeTok{depth    =}\NormalTok{ depth,        }\CommentTok{\# maximum bond{-}path length recorded}
+    \AttributeTok{size     =}\NormalTok{ nbits}
+\NormalTok{  )}
+  \FunctionTok{class}\NormalTok{(fp\_set) }\OtherTok{\textless{}{-}} \StringTok{"FPset"}
+  \FunctionTok{list}\NormalTok{(}\AttributeTok{fp =}\NormalTok{ fp\_set, }\AttributeTok{keep =}\NormalTok{ ok)}
+\NormalTok{\}}
+
+
+
+
+\CommentTok{\# one‑against‑all Tanimoto similarity (manual; no S4 coercion problems)}
+\NormalTok{cmp\_nn }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(fp\_set, i, }\AttributeTok{cutoff =} \FloatTok{0.01}\NormalTok{) \{}
+\NormalTok{  targ  }\OtherTok{\textless{}{-}}\NormalTok{ fp\_set[[i]]}\SpecialCharTok{@}\NormalTok{bits}
+\NormalTok{  tanim }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(bits) \{}
+\NormalTok{    inter }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(}\FunctionTok{intersect}\NormalTok{(targ, bits))}
+\NormalTok{    denom }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(targ) }\SpecialCharTok{+} \FunctionTok{length}\NormalTok{(bits) }\SpecialCharTok{{-}}\NormalTok{ inter}
+    \ControlFlowTok{if}\NormalTok{ (denom }\SpecialCharTok{==} \DecValTok{0}\NormalTok{) }\DecValTok{0} \ControlFlowTok{else}\NormalTok{ inter }\SpecialCharTok{/}\NormalTok{ denom}
+\NormalTok{  \}}
+\NormalTok{  sims }\OtherTok{\textless{}{-}} \FunctionTok{vapply}\NormalTok{(fp\_set, }\ControlFlowTok{function}\NormalTok{(fp) }\FunctionTok{tanim}\NormalTok{(fp}\SpecialCharTok{@}\NormalTok{bits), }\FunctionTok{numeric}\NormalTok{(}\DecValTok{1}\NormalTok{))}
+\NormalTok{  sims[i] }\OtherTok{\textless{}{-}} \SpecialCharTok{{-}}\DecValTok{1}
+\NormalTok{  best    }\OtherTok{\textless{}{-}} \FunctionTok{which.max}\NormalTok{(sims)}
+  \ControlFlowTok{if}\NormalTok{ (sims[best] }\SpecialCharTok{\textless{}}\NormalTok{ cutoff) best }\OtherTok{\textless{}{-}} \FunctionTok{which.max}\NormalTok{(sims)  }\CommentTok{\# ensure a neighbour}
+  \FunctionTok{list}\NormalTok{(}\AttributeTok{idx =}\NormalTok{ best, }\AttributeTok{score =}\NormalTok{ sims[best])}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fp\_res }\OtherTok{\textless{}{-}} \FunctionTok{smiles2fp}\NormalTok{(x3}\SpecialCharTok{$}\NormalTok{smiles)}
+\NormalTok{apset  }\OtherTok{\textless{}{-}}\NormalTok{ fp\_res}\SpecialCharTok{$}\NormalTok{fp}
+\NormalTok{x3     }\OtherTok{\textless{}{-}}\NormalTok{ x3[fp\_res}\SpecialCharTok{$}\NormalTok{keep, ]}
+
+\NormalTok{pred\_df }\OtherTok{\textless{}{-}} \FunctionTok{map\_dfr}\NormalTok{(}\FunctionTok{seq\_len}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(x3)), }\ControlFlowTok{function}\NormalTok{(i) \{}
+\NormalTok{  nn }\OtherTok{\textless{}{-}} \FunctionTok{cmp\_nn}\NormalTok{(apset, i, }\AttributeTok{cutoff =} \FloatTok{0.01}\NormalTok{)}
+  \FunctionTok{tibble}\NormalTok{(}
+    \AttributeTok{nn\_fix  =}\NormalTok{ x3}\SpecialCharTok{$}\NormalTok{FIX[nn}\SpecialCharTok{$}\NormalTok{idx],}
+    \AttributeTok{selfFix =}\NormalTok{ x3}\SpecialCharTok{$}\NormalTok{FIX[i],}
+    \AttributeTok{score   =}\NormalTok{ nn}\SpecialCharTok{$}\NormalTok{score}
+\NormalTok{  )}
+\NormalTok{\})}
+
+\CommentTok{\# probability scale (0.0 – 1.0)}
+\NormalTok{pred\_df }\OtherTok{\textless{}{-}}\NormalTok{ pred\_df }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{prob =} \FunctionTok{if\_else}\NormalTok{(}
+\NormalTok{    nn\_fix }\SpecialCharTok{==} \DecValTok{1}\NormalTok{,}
+    \FloatTok{0.5} \SpecialCharTok{+} \FloatTok{0.5} \SpecialCharTok{*}\NormalTok{ score,}
+    \FloatTok{0.5} \SpecialCharTok{{-}} \FloatTok{0.5} \SpecialCharTok{*}\NormalTok{ score}
+\NormalTok{  ))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cm }\OtherTok{\textless{}{-}}\NormalTok{ caret}\SpecialCharTok{::}\FunctionTok{confusionMatrix}\NormalTok{(}
+  \FunctionTok{factor}\NormalTok{(pred\_df}\SpecialCharTok{$}\NormalTok{nn\_fix,  }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{)),}
+  \FunctionTok{factor}\NormalTok{(pred\_df}\SpecialCharTok{$}\NormalTok{selfFix, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{))}
+\NormalTok{)}
+
+\CommentTok{\# ggplot‑style confusion matrix}
+\NormalTok{cm\_tbl }\OtherTok{\textless{}{-}} \FunctionTok{as\_tibble}\NormalTok{(cm}\SpecialCharTok{$}\NormalTok{table, }\AttributeTok{.name\_repair =} \StringTok{"unique"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{rename}\NormalTok{(}\AttributeTok{Predicted =} \DecValTok{1}\NormalTok{, }\AttributeTok{Actual =} \DecValTok{2}\NormalTok{, }\AttributeTok{n =} \DecValTok{3}\NormalTok{)}
+
+\NormalTok{gg\_cm }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(cm\_tbl, }\FunctionTok{aes}\NormalTok{(Actual, Predicted, }\AttributeTok{fill =}\NormalTok{ n)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_tile}\NormalTok{(}\AttributeTok{color =} \StringTok{"black"}\NormalTok{, }\AttributeTok{linewidth =} \FloatTok{1.2}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =}\NormalTok{ n),}
+            \AttributeTok{size =} \DecValTok{6}\NormalTok{, }\AttributeTok{fontface =} \StringTok{"bold"}\NormalTok{, }\AttributeTok{colour =} \StringTok{"white"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_gradient}\NormalTok{(}\AttributeTok{low =} \StringTok{"\#F7AD50"}\NormalTok{, }\AttributeTok{high =} \StringTok{"\#3F97D0"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Confusion Matrix"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Actual class"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Predicted class"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
+\NormalTok{gg\_cm}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=1800px]{diazotrophic_metabolite_analysis_files/figure-latex/unnamed-chunk-4-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggsave}\NormalTok{(here}\SpecialCharTok{::}\FunctionTok{here}\NormalTok{(}\StringTok{"results"}\NormalTok{, }\StringTok{"confusion\_matrix.png"}\NormalTok{),}
+\NormalTok{       gg\_cm, }\AttributeTok{width =} \DecValTok{6}\NormalTok{, }\AttributeTok{height =} \DecValTok{4}\NormalTok{, }\AttributeTok{dpi =} \DecValTok{300}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# 6  ROC curve (panel B)  — fixed drawing order}
+\FunctionTok{library}\NormalTok{(pROC)}
+\NormalTok{roc\_obj }\OtherTok{\textless{}{-}} \FunctionTok{roc}\NormalTok{(pred\_df}\SpecialCharTok{$}\NormalTok{selfFix, pred\_df}\SpecialCharTok{$}\NormalTok{prob, }\AttributeTok{quiet =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{auc\_val }\OtherTok{\textless{}{-}} \FunctionTok{auc}\NormalTok{(roc\_obj)}
+
+\NormalTok{roc\_df }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}
+  \AttributeTok{fpr =} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ roc\_obj}\SpecialCharTok{$}\NormalTok{specificities,}
+  \AttributeTok{tpr =}\NormalTok{ roc\_obj}\SpecialCharTok{$}\NormalTok{sensitivities}
+\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{arrange}\NormalTok{(fpr, tpr)          }\CommentTok{\# ensure proper order}
+
+\NormalTok{gg\_roc }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(roc\_df, }\FunctionTok{aes}\NormalTok{(fpr, tpr)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_step}\NormalTok{(}\AttributeTok{linewidth =} \DecValTok{1}\NormalTok{) }\SpecialCharTok{+}                          \CommentTok{\# heavier curve}
+  \FunctionTok{geom\_abline}\NormalTok{(}\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{coord\_equal}\NormalTok{(}\AttributeTok{expand =} \ConstantTok{FALSE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Structural Similarity Model"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"False positive rate"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"True positive rate"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_bw}\NormalTok{(}\AttributeTok{base\_size =} \DecValTok{16}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}
+    \AttributeTok{axis.line.y.left =} \FunctionTok{element\_blank}\NormalTok{(),               }\CommentTok{\# ← remove clash}
+    \AttributeTok{panel.border     =} \FunctionTok{element\_blank}\NormalTok{(),               }\CommentTok{\# keep frame clean}
+    \AttributeTok{axis.ticks       =} \FunctionTok{element\_line}\NormalTok{(}\AttributeTok{size =} \DecValTok{1}\NormalTok{),}
+    \AttributeTok{axis.text        =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{face =} \StringTok{"bold"}\NormalTok{),}
+    \AttributeTok{axis.title       =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{face =} \StringTok{"bold"}\NormalTok{),}
+    \AttributeTok{plot.title       =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{,}
+                                    \AttributeTok{face =} \StringTok{"bold"}\NormalTok{,}
+                                    \AttributeTok{size =} \DecValTok{20}\NormalTok{)}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{annotate}\NormalTok{(}\StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \FloatTok{0.6}\NormalTok{, }\AttributeTok{y =} \FloatTok{0.12}\NormalTok{,}
+           \AttributeTok{label =} \FunctionTok{sprintf}\NormalTok{(}\StringTok{"LOOCV AUC = \%.2f"}\NormalTok{, auc\_val),}
+           \AttributeTok{size =} \DecValTok{6}\NormalTok{, }\AttributeTok{fontface =} \StringTok{"bold"}\NormalTok{)}
+
+
+\NormalTok{gg\_roc}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=1650px]{diazotrophic_metabolite_analysis_files/figure-latex/roc-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggsave}\NormalTok{(here}\SpecialCharTok{::}\FunctionTok{here}\NormalTok{(}\StringTok{"results"}\NormalTok{, }\StringTok{"roc\_curve\_step.png"}\NormalTok{),}
+\NormalTok{       gg\_roc, }\AttributeTok{width =} \FloatTok{5.5}\NormalTok{, }\AttributeTok{height =} \DecValTok{5}\NormalTok{, }\AttributeTok{dpi =} \DecValTok{300}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{g\_tab }\OtherTok{\textless{}{-}} \FunctionTok{gains}\NormalTok{(pred\_df}\SpecialCharTok{$}\NormalTok{selfFix, pred\_df}\SpecialCharTok{$}\NormalTok{prob, }\AttributeTok{groups =} \DecValTok{20}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(g\_tab}\SpecialCharTok{$}\NormalTok{depth, g\_tab}\SpecialCharTok{$}\NormalTok{cume.lift, }\AttributeTok{type =} \StringTok{"l"}\NormalTok{, }\AttributeTok{lwd =} \DecValTok{3}\NormalTok{,}
+     \AttributeTok{ylab =} \StringTok{"Cumulative lift"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"Rank bucket"}\NormalTok{,}
+     \AttributeTok{main =} \StringTok{"Lift \& Response"}\NormalTok{)}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{new =} \ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(g\_tab}\SpecialCharTok{$}\NormalTok{depth, g\_tab}\SpecialCharTok{$}\NormalTok{cume.pct.of.total, }\AttributeTok{type =} \StringTok{"l"}\NormalTok{, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{,}
+     \AttributeTok{axes =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{xlab =} \StringTok{""}\NormalTok{, }\AttributeTok{ylab =} \StringTok{""}\NormalTok{)}
+\FunctionTok{axis}\NormalTok{(}\AttributeTok{side =} \DecValTok{4}\NormalTok{)}
+\FunctionTok{mtext}\NormalTok{(}\StringTok{"Cumulative response"}\NormalTok{, }\AttributeTok{side =} \DecValTok{4}\NormalTok{, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{, }\AttributeTok{line =} \DecValTok{3}\NormalTok{)}
+\FunctionTok{legend}\NormalTok{(}\StringTok{"right"}\NormalTok{, }\AttributeTok{legend =} \FunctionTok{c}\NormalTok{(}\StringTok{"Lift"}\NormalTok{, }\StringTok{"Response"}\NormalTok{),}
+       \AttributeTok{lwd =} \DecValTok{3}\NormalTok{, }\AttributeTok{col =} \FunctionTok{c}\NormalTok{(}\StringTok{"black"}\NormalTok{, }\StringTok{"red"}\NormalTok{), }\AttributeTok{bty =} \StringTok{"n"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=1800px]{diazotrophic_metabolite_analysis_files/figure-latex/unnamed-chunk-5-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{all\_raw }\OtherTok{\textless{}{-}} \FunctionTok{get\_data}\NormalTok{(}\StringTok{"CyanoMetDB.csv"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{distinct}\NormalTok{(CompoundName, SMILES)}
+\NormalTok{fp\_all  }\OtherTok{\textless{}{-}} \FunctionTok{smiles2fp}\NormalTok{(all\_raw}\SpecialCharTok{$}\NormalTok{SMILES)}
+\NormalTok{fps\_all }\OtherTok{\textless{}{-}}\NormalTok{ fp\_all}\SpecialCharTok{$}\NormalTok{fp}
+\NormalTok{all\_df  }\OtherTok{\textless{}{-}}\NormalTok{ all\_raw[fp\_all}\SpecialCharTok{$}\NormalTok{keep, ]}
+
+\NormalTok{unk }\OtherTok{\textless{}{-}} \FunctionTok{map\_dfr}\NormalTok{(}\FunctionTok{seq\_along}\NormalTok{(fps\_all), }\ControlFlowTok{function}\NormalTok{(i) \{}
+\NormalTok{  sims }\OtherTok{\textless{}{-}} \FunctionTok{map\_dbl}\NormalTok{(apset, }\SpecialCharTok{\textasciitilde{}}\NormalTok{\{}
+\NormalTok{    inter }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(}\FunctionTok{intersect}\NormalTok{(.x}\SpecialCharTok{@}\NormalTok{bits, fps\_all[[i]]}\SpecialCharTok{@}\NormalTok{bits))}
+\NormalTok{    denom }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(.x}\SpecialCharTok{@}\NormalTok{bits) }\SpecialCharTok{+} \FunctionTok{length}\NormalTok{(fps\_all[[i]]}\SpecialCharTok{@}\NormalTok{bits) }\SpecialCharTok{{-}}\NormalTok{ inter}
+    \ControlFlowTok{if}\NormalTok{ (denom }\SpecialCharTok{==} \DecValTok{0}\NormalTok{) }\DecValTok{0} \ControlFlowTok{else}\NormalTok{ inter }\SpecialCharTok{/}\NormalTok{ denom}
+\NormalTok{  \})}
+\NormalTok{  best }\OtherTok{\textless{}{-}} \FunctionTok{which.max}\NormalTok{(sims)}
+  \FunctionTok{tibble}\NormalTok{(}
+    \AttributeTok{nn\_fix  =}\NormalTok{ x3}\SpecialCharTok{$}\NormalTok{FIX[best],}
+    \AttributeTok{CompoundName =}\NormalTok{ all\_df}\SpecialCharTok{$}\NormalTok{CompoundName[i],}
+    \AttributeTok{score   =}\NormalTok{ sims[best]}
+\NormalTok{  )}
+\NormalTok{\}) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{pred\_prob =} \FunctionTok{if\_else}\NormalTok{(}
+\NormalTok{    nn\_fix }\SpecialCharTok{==} \DecValTok{1}\NormalTok{, }\FloatTok{0.5} \SpecialCharTok{+} \FloatTok{0.5} \SpecialCharTok{*}\NormalTok{ score, }\FloatTok{0.5} \SpecialCharTok{{-}} \FloatTok{0.5} \SpecialCharTok{*}\NormalTok{ score}
+\NormalTok{  ))}
+
+\FunctionTok{write\_csv}\NormalTok{(unk, here}\SpecialCharTok{::}\FunctionTok{here}\NormalTok{(}\StringTok{"results"}\NormalTok{, }\StringTok{"AllUnknownPredictions2.csv"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# ── Re‑compute unknown‑compound predictions (robust version) ───────────}
+\StringTok{\textasciigrave{}}\AttributeTok{\%notin\%}\StringTok{\textasciigrave{}} \OtherTok{\textless{}{-}} \FunctionTok{Negate}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{\%in\%}\StringTok{\textasciigrave{}}\NormalTok{)}
+
+
+\NormalTok{  all\_smiles }\OtherTok{\textless{}{-}} \FunctionTok{get\_data}\NormalTok{(}\StringTok{"CyanoMetDB.csv"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+                \FunctionTok{distinct}\NormalTok{(SMILES, CompoundName, }\AttributeTok{.keep\_all =} \ConstantTok{TRUE}\NormalTok{)}
+
+\NormalTok{  unknown\_all }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(all\_smiles, SMILES }\SpecialCharTok{\%notin\%}\NormalTok{ x3}\SpecialCharTok{$}\NormalTok{smiles)}
+
+  \CommentTok{\# build fingerprints *once*; keep mask says which SMILES parsed OK}
+\NormalTok{  fp\_u }\OtherTok{\textless{}{-}} \FunctionTok{smiles2fp}\NormalTok{(unknown\_all}\SpecialCharTok{$}\NormalTok{SMILES)}
+\NormalTok{  unknown }\OtherTok{\textless{}{-}}\NormalTok{ unknown\_all[ fp\_u}\SpecialCharTok{$}\NormalTok{keep, ]            }\CommentTok{\# drop unparsable rows}
+\NormalTok{  fp\_q    }\OtherTok{\textless{}{-}}\NormalTok{ fp\_u}\SpecialCharTok{$}\NormalTok{fp                              }\CommentTok{\# list of query FPs}
+
+  \DocumentationTok{\#\# {-}{-}{-}{-} helper: fast Tanimoto on bit‑vector indices {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\NormalTok{  tanimoto }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(b1, b2) \{}
+\NormalTok{    inter }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(}\FunctionTok{intersect}\NormalTok{(b1, b2))}
+\NormalTok{    denom }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(b1) }\SpecialCharTok{+} \FunctionTok{length}\NormalTok{(b2) }\SpecialCharTok{{-}}\NormalTok{ inter}
+    \ControlFlowTok{if}\NormalTok{ (denom }\SpecialCharTok{==} \DecValTok{0}\NormalTok{) }\DecValTok{0} \ControlFlowTok{else}\NormalTok{ inter }\SpecialCharTok{/}\NormalTok{ denom}
+\NormalTok{  \}}
+
+\NormalTok{pred\_u }\OtherTok{\textless{}{-}}\NormalTok{ purrr}\SpecialCharTok{::}\FunctionTok{map\_dfr}\NormalTok{(}\FunctionTok{seq\_along}\NormalTok{(fp\_q), }\ControlFlowTok{function}\NormalTok{(i) \{}
+
+\NormalTok{  sims }\OtherTok{\textless{}{-}} \FunctionTok{vapply}\NormalTok{(apset, }\ControlFlowTok{function}\NormalTok{(fp)}
+                 \FunctionTok{tanimoto}\NormalTok{(fp\_q[[i]]}\SpecialCharTok{@}\NormalTok{bits, fp}\SpecialCharTok{@}\NormalTok{bits), }\FunctionTok{numeric}\NormalTok{(}\DecValTok{1}\NormalTok{))}
+\NormalTok{  best }\OtherTok{\textless{}{-}} \FunctionTok{which.max}\NormalTok{(sims)}
+
+  \FunctionTok{tibble}\NormalTok{(}
+    \CommentTok{\# neighbour identity}
+    \AttributeTok{nn\_name      =}\NormalTok{ x3}\SpecialCharTok{$}\NormalTok{name[best],}
+    \AttributeTok{nn\_smiles    =}\NormalTok{ x3}\SpecialCharTok{$}\NormalTok{smiles[best],}
+    \CommentTok{\# existing output}
+    \AttributeTok{FIX          =}\NormalTok{ x3}\SpecialCharTok{$}\NormalTok{FIX[best],}
+    \AttributeTok{CompoundName =}\NormalTok{ unknown}\SpecialCharTok{$}\NormalTok{CompoundName[i],}
+    \AttributeTok{score        =} \FunctionTok{as.numeric}\NormalTok{(sims[best]),}
+    \AttributeTok{smiles       =}\NormalTok{ unknown}\SpecialCharTok{$}\NormalTok{SMILES[i],}
+    \AttributeTok{pred         =} \FunctionTok{ifelse}\NormalTok{(FIX }\SpecialCharTok{==} \DecValTok{1}\NormalTok{,}
+                          \FloatTok{0.5} \SpecialCharTok{+} \FloatTok{0.5} \SpecialCharTok{*} \FunctionTok{as.numeric}\NormalTok{(sims[best]),}
+                          \FloatTok{0.5} \SpecialCharTok{{-}} \FloatTok{0.5} \SpecialCharTok{*} \FunctionTok{as.numeric}\NormalTok{(sims[best]))}
+\NormalTok{  )}
+\NormalTok{\})}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pred\_u2 }\OtherTok{\textless{}{-}}\NormalTok{ pred\_u }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(pred\_u}\SpecialCharTok{$}\NormalTok{smiles }\SpecialCharTok{\%notin\%} \FunctionTok{unique}\NormalTok{(x3}\SpecialCharTok{$}\NormalTok{SMILES))}
+\NormalTok{pred\_u2}\SpecialCharTok{$}\NormalTok{SMILES}\OtherTok{\textless{}{-}}\NormalTok{ pred\_u2}\SpecialCharTok{$}\NormalTok{smiles}
+\NormalTok{strain\_tbl }\OtherTok{\textless{}{-}}\NormalTok{ cyano }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{cSplit}\NormalTok{(}\StringTok{"Strain"}\NormalTok{, }\AttributeTok{sep =} \StringTok{";"}\NormalTok{, }\AttributeTok{direction =} \StringTok{"long"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{cSplit}\NormalTok{(}\StringTok{"Strain"}\NormalTok{, }\AttributeTok{sep =} \StringTok{","}\NormalTok{, }\AttributeTok{direction =} \StringTok{"long"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{inner\_join}\NormalTok{(}\FunctionTok{select}\NormalTok{(pred\_u2, SMILES, pred),}
+             \AttributeTok{by =} \FunctionTok{c}\NormalTok{(}\StringTok{"SMILES"}\NormalTok{)) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{group\_by}\NormalTok{(Strain) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{summarise}\NormalTok{(}
+    \StringTok{\textasciigrave{}}\AttributeTok{Max Probability}\StringTok{\textasciigrave{}} \OtherTok{=} \FunctionTok{max}\NormalTok{(pred),}
+    \StringTok{\textasciigrave{}}\AttributeTok{Metabolite Count}\StringTok{\textasciigrave{}} \OtherTok{=} \FunctionTok{n}\NormalTok{(), }\AttributeTok{.groups =} \StringTok{"drop"}
+\NormalTok{  ) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{Max Probability}\StringTok{\textasciigrave{}}\NormalTok{)) }\CommentTok{\#|\textgreater{}}
+  \CommentTok{\#slice\_tail(n = 20)}
+
+\CommentTok{\#hist(strain\_tbl$\textasciigrave{}Max Probability\textasciigrave{})}
+
+\NormalTok{compound\_tbl }\OtherTok{\textless{}{-}}\NormalTok{ pred\_u2 }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(pred)) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{select}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{Compound Name}\StringTok{\textasciigrave{}} \OtherTok{=}\NormalTok{ CompoundName,}
+         \StringTok{\textasciigrave{}}\AttributeTok{Predicted Probability}\StringTok{\textasciigrave{}} \OtherTok{=}\NormalTok{ pred) }\CommentTok{\#|\textgreater{}}
+  \CommentTok{\#slice\_tail(n = 20)}
+
+\NormalTok{compound\_tbl }\OtherTok{\textless{}{-}}\NormalTok{ pred\_u2 }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(pred))}
+
+\CommentTok{\#knitr::kable(strain\_tbl, digits = 3, caption = "Top‑ranked strains")}
+\CommentTok{\#knitr::kable(compound\_tbl, digits = 3, caption = "Top‑ranked compounds")}
+
+\FunctionTok{write\_csv}\NormalTok{(strain\_tbl,   here}\SpecialCharTok{::}\FunctionTok{here}\NormalTok{(}\StringTok{"results"}\NormalTok{, }\StringTok{"UnlabeledStrainResults2.csv"}\NormalTok{))}
+\FunctionTok{write\_csv}\NormalTok{(compound\_tbl, here}\SpecialCharTok{::}\FunctionTok{here}\NormalTok{(}\StringTok{"results"}\NormalTok{, }\StringTok{"UnlabeledCompoundResults2.csv"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# ── Toxicity box‑plots with wrapped y‑axis titles ──────────────────────}
+\NormalTok{tox\_rat  }\OtherTok{\textless{}{-}} \FunctionTok{get\_data}\NormalTok{(}\StringTok{"Batch\_Oral\_rat\_LD50\_Consensus.csv"}\NormalTok{)}
+\NormalTok{tox\_daph }\OtherTok{\textless{}{-}} \FunctionTok{get\_data}\NormalTok{(}\StringTok{"Batch\_Daphnia\_magna\_LC50\_(48\_hr)\_AllMethods.csv"}\NormalTok{)}
+
+\DocumentationTok{\#\# classification lookup (labelled + unknown predictions we just made)}
+\NormalTok{pred\_lookup }\OtherTok{\textless{}{-}} \FunctionTok{bind\_rows}\NormalTok{(}
+  \FunctionTok{transmute}\NormalTok{(x3,  smiles, }\AttributeTok{p\_np =}\NormalTok{ FIX),}
+  \FunctionTok{transmute}\NormalTok{(unk, }\AttributeTok{smiles =}\NormalTok{ CompoundName,  }\CommentTok{\# unknowns use their names}
+            \AttributeTok{p\_np =} \FunctionTok{if\_else}\NormalTok{(pred\_prob }\SpecialCharTok{\textgreater{}=}\NormalTok{ .}\DecValTok{5}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{))}
+\NormalTok{)}
+
+\NormalTok{make\_box }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(dat, ycol, ylab, lookup, label\_y) \{}
+\NormalTok{  joined }\OtherTok{\textless{}{-}}\NormalTok{ dat }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{mutate}\NormalTok{(}\AttributeTok{smiles =}\NormalTok{ Query) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{left\_join}\NormalTok{(lookup, }\AttributeTok{by =} \StringTok{"smiles"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(p\_np)) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{rename}\NormalTok{(}\AttributeTok{value =} \SpecialCharTok{!!}\NormalTok{ycol) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{mutate}\NormalTok{(}\AttributeTok{value =} \FunctionTok{suppressWarnings}\NormalTok{(}\FunctionTok{as.numeric}\NormalTok{(value))) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(value))}
+
+\NormalTok{  joined}\SpecialCharTok{$}\NormalTok{p\_np }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(joined}\SpecialCharTok{$}\NormalTok{p\_np, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{))}
+
+\NormalTok{  ggpubr}\SpecialCharTok{::}\FunctionTok{ggboxplot}\NormalTok{(}
+\NormalTok{    joined, }\AttributeTok{x =} \StringTok{"p\_np"}\NormalTok{, }\AttributeTok{y =} \StringTok{"value"}\NormalTok{,}
+    \AttributeTok{palette =} \StringTok{"jco"}\NormalTok{, }\AttributeTok{add =} \StringTok{"jitter"}\NormalTok{,}
+    \AttributeTok{size =} \FloatTok{1.1}\NormalTok{, }\AttributeTok{ggtheme =} \FunctionTok{theme\_bw}\NormalTok{(}\AttributeTok{base\_size =} \DecValTok{16}\NormalTok{)}
+\NormalTok{  ) }\SpecialCharTok{+}
+\NormalTok{    ggpubr}\SpecialCharTok{::}\FunctionTok{stat\_compare\_means}\NormalTok{(}\AttributeTok{method  =} \StringTok{"t.test"}\NormalTok{,}
+                               \AttributeTok{label.y =}\NormalTok{ label\_y,}
+                               \AttributeTok{size    =} \FloatTok{4.5}\NormalTok{,}
+                               \AttributeTok{label.x.npc =}\NormalTok{ .}\DecValTok{5}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{coord\_cartesian}\NormalTok{(}\AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{10}\NormalTok{), }\AttributeTok{clip =} \StringTok{"off"}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Diazotroph (1)}\SpecialCharTok{\textbackslash{}n}\StringTok{vs Non‑diazotroph (0)"}\NormalTok{,}
+         \AttributeTok{y =}\NormalTok{ ylab) }\SpecialCharTok{+}
+    \FunctionTok{theme}\NormalTok{(}
+      \AttributeTok{axis.title.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{vjust =} \SpecialCharTok{{-}}\FloatTok{2.6}\NormalTok{, }\AttributeTok{hjust =}\NormalTok{ .}\DecValTok{5}\NormalTok{, }\AttributeTok{face =} \StringTok{"bold"}\NormalTok{),}
+      \AttributeTok{axis.title.y =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{face =} \StringTok{"bold"}\NormalTok{,}
+                                  \AttributeTok{margin =} \FunctionTok{margin}\NormalTok{(}\AttributeTok{r =} \DecValTok{7}\NormalTok{)),}
+      \AttributeTok{panel.grid.major.x =} \FunctionTok{element\_blank}\NormalTok{(),}
+      \AttributeTok{panel.grid.major.y =} \FunctionTok{element\_line}\NormalTok{(}\AttributeTok{colour =} \StringTok{"grey85"}\NormalTok{, }\AttributeTok{linewidth =}\NormalTok{ .}\DecValTok{4}\NormalTok{),}
+      \AttributeTok{panel.grid.minor   =} \FunctionTok{element\_blank}\NormalTok{(),}
+      \AttributeTok{plot.margin        =} \FunctionTok{margin}\NormalTok{(}\AttributeTok{t =} \DecValTok{22}\NormalTok{, }\AttributeTok{r =} \DecValTok{20}\NormalTok{, }\AttributeTok{b =} \DecValTok{46}\NormalTok{, }\AttributeTok{l =} \DecValTok{22}\NormalTok{)}
+\NormalTok{    )}
+\NormalTok{\}}
+
+\NormalTok{p1 }\OtherTok{\textless{}{-}} \FunctionTok{make\_box}\NormalTok{(}
+\NormalTok{  tox\_rat,}
+  \StringTok{"Pred\_Value:\_{-}Log10(mol/kg)"}\NormalTok{,}
+  \StringTok{"Rat oral LD50}\SpecialCharTok{\textbackslash{}n}\StringTok{(−log10 mol kg⁻¹)"}\NormalTok{,}
+\NormalTok{  pred\_lookup,}
+  \AttributeTok{label\_y =} \FloatTok{8.9}
+\NormalTok{)}
+
+\NormalTok{p2 }\OtherTok{\textless{}{-}} \FunctionTok{make\_box}\NormalTok{(}
+\NormalTok{  tox\_daph,}
+  \StringTok{"Pred\_Consensus\_{-}Log10(mol/L)"}\NormalTok{,}
+  \StringTok{"Daphnia LC50}\SpecialCharTok{\textbackslash{}n}\StringTok{(−log10 mol L⁻¹)"}\NormalTok{,}
+\NormalTok{  pred\_lookup,}
+  \AttributeTok{label\_y =} \FloatTok{8.9}
+\NormalTok{)}
+
+\NormalTok{tox\_plot }\OtherTok{\textless{}{-}}\NormalTok{ (p1 }\SpecialCharTok{|}\NormalTok{ p2) }\SpecialCharTok{+}
+\NormalTok{  patchwork}\SpecialCharTok{::}\FunctionTok{plot\_annotation}\NormalTok{(}
+    \AttributeTok{tag\_levels =} \StringTok{"A"}\NormalTok{,}
+    \AttributeTok{theme =} \FunctionTok{theme}\NormalTok{(}
+      \AttributeTok{plot.tag          =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{16}\NormalTok{, }\AttributeTok{face =} \StringTok{"bold"}\NormalTok{),}
+      \AttributeTok{plot.tag.position =} \FunctionTok{c}\NormalTok{(.}\DecValTok{012}\NormalTok{, .}\DecValTok{983}\NormalTok{)}
+\NormalTok{    )}
+\NormalTok{  )}
+
+\NormalTok{tox\_plot   }\CommentTok{\# show in viewer}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=1800px]{diazotrophic_metabolite_analysis_files/figure-latex/unnamed-chunk-9-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# save (note the **ggplot2** namespace)}
+\NormalTok{ggplot2}\SpecialCharTok{::}\FunctionTok{ggsave}\NormalTok{(}
+\NormalTok{  here}\SpecialCharTok{::}\FunctionTok{here}\NormalTok{(}\StringTok{"results"}\NormalTok{, }\StringTok{"toxicity\_boxplots.png"}\NormalTok{),}
+\NormalTok{  tox\_plot,}
+  \AttributeTok{width  =} \DecValTok{9}\NormalTok{,}
+  \AttributeTok{height =} \DecValTok{4}\NormalTok{,}
+  \AttributeTok{dpi    =} \DecValTok{300}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sessionInfo}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## R version 4.5.1 (2025-06-13 ucrt)
+## Platform: x86_64-w64-mingw32/x64
+## Running under: Windows 11 x64 (build 26100)
+## 
+## Matrix products: default
+##   LAPACK version 3.12.1
+## 
+## locale:
+## [1] LC_COLLATE=English_United States.utf8 
+## [2] LC_CTYPE=English_United States.utf8   
+## [3] LC_MONETARY=English_United States.utf8
+## [4] LC_NUMERIC=C                          
+## [5] LC_TIME=English_United States.utf8    
+## 
+## time zone: America/New_York
+## tzcode source: internal
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] patchwork_1.3.1       ggpubr_0.6.1          pROC_1.18.5          
+##  [4] gains_1.2             caret_7.0-1           lattice_0.22-7       
+##  [7] fingerprint_3.5.7     rcdk_3.8.1            rcdklibs_2.9         
+## [10] rJava_1.0-11          splitstackshape_1.4.8 here_1.0.1           
+## [13] lubridate_1.9.4       forcats_1.0.0         stringr_1.5.1        
+## [16] dplyr_1.1.4           purrr_1.0.4           readr_2.1.5          
+## [19] tidyr_1.3.1           tibble_3.3.0          ggplot2_3.5.2        
+## [22] tidyverse_2.0.0      
+## 
+## loaded via a namespace (and not attached):
+##  [1] rlang_1.1.6          magrittr_2.0.3       e1071_1.7-16        
+##  [4] compiler_4.5.1       systemfonts_1.2.3    png_0.1-8           
+##  [7] vctrs_0.6.5          reshape2_1.4.4       pkgconfig_2.0.3     
+## [10] crayon_1.5.3         fastmap_1.2.0        backports_1.5.0     
+## [13] labeling_0.4.3       rmarkdown_2.29       prodlim_2025.04.28  
+## [16] tzdb_0.5.0           itertools_0.1-3      ragg_1.4.0          
+## [19] bit_4.6.0            xfun_0.52            recipes_1.3.1       
+## [22] broom_1.0.8          parallel_4.5.1       R6_2.6.1            
+## [25] stringi_1.8.7        RColorBrewer_1.1-3   parallelly_1.45.0   
+## [28] car_3.1-3            rpart_4.1.24         Rcpp_1.0.14         
+## [31] iterators_1.0.14     knitr_1.50           future.apply_1.20.0 
+## [34] Matrix_1.7-3         splines_4.5.1        nnet_7.3-20         
+## [37] timechange_0.3.0     tidyselect_1.2.1     rstudioapi_0.17.1   
+## [40] abind_1.4-8          yaml_2.3.10          timeDate_4041.110   
+## [43] codetools_0.2-20     curl_6.4.0           listenv_0.9.1       
+## [46] plyr_1.8.9           withr_3.0.2          evaluate_1.0.4      
+## [49] future_1.58.0        survival_3.8-3       proxy_0.4-27        
+## [52] pillar_1.10.2        carData_3.0-5        foreach_1.5.2       
+## [55] stats4_4.5.1         generics_0.1.4       vroom_1.6.5         
+## [58] rprojroot_2.0.4      hms_1.1.3            scales_1.4.0        
+## [61] globals_0.18.0       class_7.3-23         glue_1.8.0          
+## [64] tools_4.5.1          data.table_1.17.6    ModelMetrics_1.2.2.2
+## [67] gower_1.0.2          ggsignif_0.6.4       grid_4.5.1          
+## [70] ipred_0.9-15         nlme_3.1-168         Formula_1.2-5       
+## [73] cli_3.6.5            textshaping_1.0.1    lava_1.8.1          
+## [76] gtable_0.3.6         ggsci_3.2.0          rstatix_0.7.2       
+## [79] digest_0.6.37        farver_2.1.2         htmltools_0.5.8.1   
+## [82] lifecycle_1.0.4      hardhat_1.4.1        bit64_4.6.0-1       
+## [85] MASS_7.3-65
+\end{verbatim}
+
+\end{document}
